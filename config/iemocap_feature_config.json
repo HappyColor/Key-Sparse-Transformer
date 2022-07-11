@@ -1,0 +1,19 @@
+{   
+    "num_classes": 4,
+
+    "evaluate": ["accuracy", "recall"],
+
+    "meta_csv_file": "/148Dataset/data-chen.weidong/iemocap/feature/name_label_text.csv",
+
+    "wav2vec": {
+        "matdir": "/148Dataset/data-chen.weidong/iemocap/feature/wav_wav2vec_mat",
+        "matkey": "wav", 
+        "length": 460
+    },
+
+    "roberta": {
+        "matdir": "/148Dataset/data-chen.weidong/iemocap/feature/text_roberta_mat",
+        "matkey": "embedding", 
+        "length": 20
+    }
+}

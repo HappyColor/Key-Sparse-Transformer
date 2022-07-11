@@ -1,0 +1,8 @@
+{
+    "ks_transformer": {
+        "input_dim": [512, 1024],
+        "ffn_embed_dim": [256, 512], 
+        "num_layers": [5,3,2], 
+        "num_heads": 8
+    }
+}
