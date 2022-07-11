@@ -1,0 +1,2 @@
+## KEY-SPARSE TRANSFORMER FOR MULTIMODAL SPEECH EMOTION RECOGNITION
+## [(ICASSP 2022)](https://ieeexplore.ieee.org/abstract/document/9746598)
