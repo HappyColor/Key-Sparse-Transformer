@@ -4,13 +4,13 @@ Created on Thu Dec 16 14:39:52 CST 2021
 """
 import torch.nn as nn
 
-from model.KS_transformer import build_ks_transformer
+from model.KS_transformer_block import build_ks_transformer_block
 
 class single_CCAB(nn.Module):
     def __init__(self, embed_dim, kdim, ffn_embed_dim, num_heads):
         super().__init__()
-        self.ks_trans_1 = build_ks_transformer(self_attn=False, num_layers=1, embed_dim=embed_dim, kdim=kdim, ffn_embed_dim=ffn_embed_dim, num_heads=num_heads)
-        self.ks_trais_2 = build_ks_transformer(self_attn=True, num_layers=1, embed_dim=embed_dim, ffn_embed_dim=ffn_embed_dim, num_heads=num_heads)
+        self.ks_trans_1 = build_ks_transformer_block(self_attn=False, num_layers=1, embed_dim=embed_dim, kdim=kdim, ffn_embed_dim=ffn_embed_dim, num_heads=num_heads)
+        self.ks_trais_2 = build_ks_transformer_block(self_attn=True, num_layers=1, embed_dim=embed_dim, ffn_embed_dim=ffn_embed_dim, num_heads=num_heads)
     
     def forward(self, x, k, key_padding_mask):
         x = self.ks_trans_1(query=x, key=k, key_padding_mask=key_padding_mask)

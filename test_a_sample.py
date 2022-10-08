@@ -12,7 +12,7 @@ import scipy.signal as signal
 import json
 from fairseq.models.wav2vec import Wav2VecModel
 from fairseq.models.roberta import RobertaModel
-from model.KS_transformer_model import build_ks_transformer_model
+from model.KS_transformer import build_ks_transformer
 import utils
 '''
 指定自监督模型wav2vec与RoBERTa的路径
@@ -62,7 +62,7 @@ def load_model(ckpt=None, device='cuda', num_classes=4):
     print('Loading model...')
     with open('./config/model_config.json', 'r') as f1:
         model_json = json.load(f1)['ks_transformer']
-    model = build_ks_transformer_model(num_classes=num_classes, **model_json).to(device)
+    model = build_ks_transformer(num_classes=num_classes, **model_json).to(device)
     model_state_dict = torch.load(ckpt, map_location=device)['model']
     if device == 'cuda':
         model.load_state_dict(model_state_dict)
