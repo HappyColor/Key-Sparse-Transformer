@@ -5,7 +5,7 @@ Created on Tue Sep 28 16:53:37 CST 2021
 import torch
 import torch.nn as nn
 from model.transformer import build_transformer
-from model.KS_transformer_block import build_ks_transformer
+from model.KS_transformer_block import build_ks_transformer_block
 from model.CCAB_block import build_CCAB
 
 class KS_transformer(nn.Module):
@@ -20,8 +20,8 @@ class KS_transformer(nn.Module):
         self.at_cross_Trans = build_CCAB(num_layers=num_layers[1], embed_dim=input_dim[0], kdim=input_dim[1], ffn_embed_dim=ffn_embed_dim[0], num_heads=num_heads)
         self.ta_cross_Trans = build_CCAB(num_layers=num_layers[1], embed_dim=input_dim[1], kdim=input_dim[0], ffn_embed_dim=ffn_embed_dim[1], num_heads=num_heads)
         
-        self.last_audio_self_Trans = build_ks_transformer(self_attn=True, num_layers=num_layers[2], embed_dim=input_dim[0], ffn_embed_dim=ffn_embed_dim[0], num_heads=num_heads)
-        self.last_text_self_Trans = build_ks_transformer(self_attn=True, num_layers=num_layers[2], embed_dim=input_dim[1], ffn_embed_dim=ffn_embed_dim[1], num_heads=num_heads)
+        self.last_audio_self_Trans = build_ks_transformer_block(self_attn=True, num_layers=num_layers[2], embed_dim=input_dim[0], ffn_embed_dim=ffn_embed_dim[0], num_heads=num_heads)
+        self.last_text_self_Trans = build_ks_transformer_block(self_attn=True, num_layers=num_layers[2], embed_dim=input_dim[1], ffn_embed_dim=ffn_embed_dim[1], num_heads=num_heads)
         
         self.avgpool = nn.AdaptiveAvgPool1d(1)
         fc_dim = self.input_dim[0] + self.input_dim[1]

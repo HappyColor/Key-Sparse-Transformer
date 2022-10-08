@@ -197,7 +197,7 @@ class KS_TransformerEncoder(nn.Module):
         x = self.final_layer_norm(x)
         return x
 
-class KS_Transformer(nn.Module):
+class KS_Transformer_block(nn.Module):
 
     def __init__(self, self_attn, num_layers, embed_dim, qdim=None, kdim=None, ffn_embed_dim=2304, num_heads=8, dropout=0.1, attention_dropout=0.1, activation='relu'):
         super().__init__()
@@ -246,5 +246,5 @@ def build_ks_transformer_block(self_attn, num_layers, embed_dim, qdim=None, kdim
     else:
         assert kdim is not None, 'kdim should be provided for cross attention.'
 
-    return KS_Transformer(self_attn, num_layers, embed_dim, qdim, kdim, ffn_embed_dim, num_heads, dropout, attention_dropout, activation)
+    return KS_Transformer_block(self_attn, num_layers, embed_dim, qdim, kdim, ffn_embed_dim, num_heads, dropout, attention_dropout, activation)
 
