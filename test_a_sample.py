@@ -14,13 +14,7 @@ from fairseq.models.wav2vec import Wav2VecModel
 from fairseq.models.roberta import RobertaModel
 from model.KS_transformer import build_ks_transformer
 import utils
-'''
-指定自监督模型wav2vec与RoBERTa的路径
-指定预训练模型ckpt的路径
-指定音频(.wav)的路径
-指定文字(.txt)的路径
-指定计算资源：cpu / cuda
-'''
+
 def extract_wav2vec(wavfile, model_path):
     print('Extracting wav2vec feature...')
     cp = torch.load(model_path, map_location='cpu')
@@ -87,6 +81,8 @@ def index_2_label(index):
     return label_conveter[index]
 
 if __name__ == '__main__':
+    ''' You should modify the following paths to your own paths.
+    '''
     wav2vec_model_path = '/148Dataset/data-chen.weidong/pre_trained_model/wav2vec/wav2vec_large.pt'
     roberta_model_path = '/148Dataset/data-chen.weidong/pre_trained_model/roberta/roberta.large'
     ckpt = './experiments/ks_transformer/iemocap_e120_b32_lr0.0005/fold_1/checkpoint/best.pt'
